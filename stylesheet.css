@@ -1,0 +1,66 @@
+/* body {
+	background-image:url("bg12.jpg");
+    background-size:cover;
+
+} */
+h2
+{
+	color: black;
+	text-align: center;
+	margin: 0 auto;
+  text-decoration: underline;
+  font-size: 40px;
+}
+#container
+{
+	background-size:cover;
+	margin: 1em;
+	padding: 1%;
+	width: 65%;
+  margin-left: 5%;
+  height: 80%;
+}
+#images
+ {
+	background-color: #112b42;
+	padding: 1%;
+}
+#playercards
+{
+	margin : 0 auto;
+	padding: 0.8%;
+	background-color: #45ca7c;
+	height: 200px;
+}
+#dealercards
+{
+	margin : 0 auto;
+	padding: 1%;
+	background-color: #1c5c21;
+	height: 200px;
+}
+#dealer
+{
+	display: block;
+	text-align: center;
+}
+#hit
+{
+	display: block;
+	text-align: center;
+}
+#result
+{
+	position: relative;
+	right:50px;
+	border: 3px;
+	display: block;
+}
+#results
+{
+	display: inline-block;
+	max-width: 85%;
+	font-size: 15px;
+	font-weight: bold;
+	color: #5500ff;
+}
