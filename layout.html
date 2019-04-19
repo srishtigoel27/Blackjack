@@ -28,7 +28,7 @@
 				</div>
             </div>
 						<div id="coin">
-							<img alt="card" src="10.png" id="dealc" style="width:140px;height:100px;">
+							<img alt="card" src="10.png"hidden id="dealc" style="width:140px;height:100px;">
 						</div>
 					</br>
 						<img alt="card" src="10.png" onclick="changecoin(this.src)" style="width:140px;height:100px;">
@@ -39,10 +39,10 @@
 					<button id="dealBtn" onclick="setcards()">Deal</button>
 					<!-- <button id="resetBtn">Reset</button> -->
              </div>
-                <!-- <div id = "hit">
-                        <button id="hitBtn">Hit</button>
-                        <button id="standBtn">Stand</button>
-                    </div> -->
+                <div id = "hit">
+                        <button id="hitBtn" hidden>Hit</button>
+                        <button id="standBtn" hidden>Stand</button>
+                    </div>
              </div>
              <!-- <div id="result">
                     Your score :<input type="text" id="playersum" value="">
@@ -70,15 +70,29 @@ var arr={
 }
 function setcards()
 {
-	for(i=0;i<3;i++)
+	for(i=1;i<4;i++)
 	{
-	var x=Math.floor((Math.random() * 52) + 1);
-	console.log(arr[x]);
-}
-
+		do
+		{
+			var x=Math.floor((Math.random() * 52) + 1);
+		}while(arr[x]==0);
+		var id="c"+i;
+		document.getElementById(id).src=arr[x];
+		arr[x]=0;
+		console.log(x);
+	}
+	do
+	{
+		var hide=Math.floor((Math.random() * 52) + 1);
+	}while(arr[hide]==0);
+	console.log(hide);
+	document.getElementById("dealBtn").disabled=true;
+	document.getElementById("hitBtn").style.display="block";
+	document.getElementById("standBtn").style.display="block";
 }
 function changecoin(s)
 {
+	document.getElementById("dealc").style.display="block";
 	document.getElementById("dealc").src=s;
 }
 </script>
