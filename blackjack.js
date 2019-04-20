@@ -28,6 +28,11 @@ var cardvalue={
 	'QC.png':'10','QD.png':'10','QH.png':'10','QS.png':'10',
 	'JC.png':'10','JD.png':'10','JH.png':'10','JS.png':'10'
 }
+var money=1000;
+var bet=0;
+var coinvalue={
+	'10.png':'10','100.png':'100','11.png':'1'
+}
 function setcards()
 {
 	for(i=1;i<4;i++)
@@ -45,19 +50,29 @@ function setcards()
 	{
 		var hide=Math.floor((Math.random() * 52) + 1);
 	}while(arr[hide]==0);
-	console.log(hide);
+	// console.log(hide);
 	document.getElementById("dealBtn").disabled=true;
 	document.getElementById("hitBtn").style.display="block";
 	document.getElementById("standBtn").style.display="block";
 	document.getElementById("doubleBtn").style.display="block";
-	// var a=document.getElementById("c1");
-	// var b=document.getElementById("c2");
-	// console.log(a);
-	// console.log(b);
-	// if(cardvalue[a]==cardvalue[b])
-	// {
-	// 	document.getElementById("splitBtn").style.display="block";
-	// }
+	var a=document.getElementById("c1");
+	var b=document.getElementById("c2");
+	if(cardvalue[a.getAttribute('src')]==cardvalue[b.getAttribute('src')])
+	{
+		if(cardvalue[a.getAttribute('src')]==10)
+		{
+			var str1=a.getAttribute('src');
+			var str2=b.getAttribute('src');
+			// console.log(str1[0]+str2[0]);
+			if(str1[0]==str2[0])
+			{
+				document.getElementById("splitBtn").style.display="block";
+			}
+		}
+		else {
+			document.getElementById("splitBtn").style.display="block";
+		}
+	}
 }
 // function hit()
 // {
@@ -79,5 +94,21 @@ function stand()
 function changecoin(s)
 {
 	document.getElementById("dealc").style.display="block";
-	document.getElementById("dealc").src=s;
+	document.getElementById("dealc").src=s.src;
+	var c=s.getAttribute('src');
+	bet=bet+Number(coinvalue[c]);
+	money=money-Number(coinvalue[c]);
+	if(money<100)
+	{
+		document.getElementById("100c").style.visibility="hidden";
+	}
+	if(money<10)
+	{
+		document.getElementById("10c").style.visibility="hidden";
+	}
+	if(money<1)
+	{
+		document.getElementById("1c").style.visibility="hidden";
+	}
+	console.log(bet+" "+money);
 }
