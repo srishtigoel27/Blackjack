@@ -43,18 +43,17 @@ function setcards()
 		}while(arr[x]==0);
 		var id="c"+i;
 		document.getElementById(id).src=arr[x];
-		// arr[x]=0;
 		console.log(x);
 	}
 	do
 	{
 		var hide=Math.floor((Math.random() * 52) + 1);
 	}while(arr[hide]==0);
-	// console.log(hide);
 	document.getElementById("dealBtn").disabled=true;
 	document.getElementById("hitBtn").style.display="block";
 	document.getElementById("standBtn").style.display="block";
-	document.getElementById("doubleBtn").style.display="block";
+	if(money>=bet)
+		document.getElementById("doubleBtn").style.display="block";
 	var a=document.getElementById("c1");
 	var b=document.getElementById("c2");
 	if(cardvalue[a.getAttribute('src')]==cardvalue[b.getAttribute('src')])
@@ -63,7 +62,6 @@ function setcards()
 		{
 			var str1=a.getAttribute('src');
 			var str2=b.getAttribute('src');
-			// console.log(str1[0]+str2[0]);
 			if(str1[0]==str2[0])
 			{
 				document.getElementById("splitBtn").style.display="block";
@@ -110,5 +108,14 @@ function changecoin(s)
 	{
 		document.getElementById("1c").style.visibility="hidden";
 	}
-	console.log(bet+" "+money);
+	document.getElementById("b").value=bet;
+}
+function doubling()
+{
+	money=money-bet;
+	bet=bet+bet;
+	document.getElementById("b").value=bet;
+	document.getElementById("hitBtn").disabled=true;
+	document.getElementById("doubleBtn").disabled=true;
+	document.getElementById("standBtn").disabled=true;
 }
