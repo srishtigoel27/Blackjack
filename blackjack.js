@@ -37,6 +37,7 @@ var dealsum=0;
 var playersum=0;
 var hide="";
 document.getElementById("dealBtn").disabled=true;
+document.getElementById("total").innerHTML=money;
 function setcards()
 {
 	document.getElementById("dealBtn").style.display="none";
@@ -50,12 +51,11 @@ function setcards()
 		document.getElementById(id).src=arr[x];
 		if(i==1||i==2)
 			addvalue(arr[x]);
+		else {
+			adddeal(arr[x]);
+		}
 		console.log(x);
 	}
-	do
-	{
-		hide=Math.floor((Math.random() * 52) + 1);
-	}while(arr[hide]==0);
 	document.getElementById("dealBtn").disabled=true;
 	document.getElementById("hitBtn").style.display="block";
 	document.getElementById("standBtn").style.display="block";
@@ -82,7 +82,17 @@ function setcards()
 function addvalue(a)
 {
 	playersum=playersum+Number(cardvalue[a]);
-	console.log("SUM"+playersum);
+	if(playersum>=21)
+	{
+		document.getElementById("hitBtn").style.display="none";
+		stand();
+	}
+	document.getElementById("p").style.display="block";
+	document.getElementById("ps").innerHTML=playersum;
+}
+function adddeal(a)
+{
+	dealsum=dealsum+Number(cardvalue[a]);
 }
 var gl=1;
 function hit()
@@ -96,13 +106,39 @@ function hit()
 	document.getElementById(id).src=arr[x];
 	addvalue(arr[x]);
 	arr[x]=0;
-	console.log(x);
 	gl=gl+1;
+}
+var z=1;
+function dealergame()
+{
+	while(dealsum<17)
+	{
+		do
+		{
+			var x=Math.floor((Math.random() * 52) + 1);
+		}while(arr[x]==0);
+		var id="d"+z;
+		document.getElementById(id).style.display="inline-block";
+		document.getElementById(id).src=arr[x];
+		adddeal(arr[x]);
+		arr[x]=0;
+		z=z+1;
+	}
+	document.getElementById("d").style.display="block";
+	document.getElementById("ds").innerHTML=dealsum;
 }
 function stand()
 {
+	do
+	{
+		hide=Math.floor((Math.random() * 52) + 1);
+	}while(arr[hide]==0);
+	adddeal(arr[hide]);
 	document.getElementById("hitBtn").disabled=true;
 	document.getElementById("c4").src=arr[hide];
+	arr[hide]=0;
+	dealergame();
+	result();
 }
 function changecoin(s)
 {
@@ -113,6 +149,7 @@ function changecoin(s)
 	var c=s.getAttribute('src');
 	bet=bet+Number(coinvalue[c]);
 	money=money-Number(coinvalue[c]);
+	document.getElementById("total").innerHTML=money;
 	if(money<100)
 	{
 		document.getElementById("100c").style.visibility="hidden";
@@ -125,15 +162,46 @@ function changecoin(s)
 	{
 		document.getElementById("1c").style.visibility="hidden";
 	}
-	document.getElementById("b").value=bet;
+	document.getElementById("b").innerHTML=bet;
 }
 function doubling()
 {
 	money=money-bet;
 	bet=bet+bet;
-	document.getElementById("b").value=bet;
+	document.getElementById("b").innerHTML=bet;
 	document.getElementById("hitBtn").disabled=true;
 	document.getElementById("doubleBtn").disabled=true;
 	document.getElementById("standBtn").disabled=true;
-	document.getElementById("c5").src=arr[hide];
+	document.getElementById("c4").src=arr[hide];
+}
+function result()
+{
+	if(playersum==dealsum)
+	{
+		document.getElementById("res").innerHTML="PUSH";
+	}
+	else if(playersum==21)
+	{
+		document.getElementById("res").innerHTML="PLAYER BLACKJACK";
+	}
+	else if(dealsum==21)
+	{
+		document.getElementById("res").innerHTML="DEALER BLACKJACK";
+	}
+	else if(playersum>21||dealsum>21)
+	{
+		if(dealsum<playersum)
+			document.getElementById("res").innerHTML="DEALER WIN";
+		else {
+			document.getElementById("res").innerHTML="PLAYER WIN";
+		}
+	}
+	else if (dealsum>playersum)
+	{
+		document.getElementById("res").innerHTML="DEALER WIN";
+	}
+	else if (playersum>dealsum)
+	{
+		document.getElementById("res").innerHTML="PLAYER WIN";
+	}
 }
