@@ -179,10 +179,12 @@ function result()
 	if(playersum==dealsum)
 	{
 		document.getElementById("res").innerHTML="PUSH";
+		money=money+bet;
 	}
 	else if(playersum==21)
 	{
 		document.getElementById("res").innerHTML="PLAYER BLACKJACK";
+		money=money+(2.5*bet);
 	}
 	else if(dealsum==21)
 	{
@@ -194,6 +196,7 @@ function result()
 			document.getElementById("res").innerHTML="DEALER WIN";
 		else {
 			document.getElementById("res").innerHTML="PLAYER WIN";
+			money=money+2*bet;
 		}
 	}
 	else if (dealsum>playersum)
@@ -203,5 +206,7 @@ function result()
 	else if (playersum>dealsum)
 	{
 		document.getElementById("res").innerHTML="PLAYER WIN";
+		money=money+2*bet;
 	}
+	document.getElementById("total").innerHTML=money;
 }
