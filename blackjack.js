@@ -33,6 +33,8 @@ var bet=0;
 var coinvalue={
 	'10.png':'10','100.png':'100','11.png':'1'
 }
+var dealsum=0;
+var playersum=0;
 var hide="";
 document.getElementById("dealBtn").disabled=true;
 function setcards()
@@ -46,6 +48,8 @@ function setcards()
 		}while(arr[x]==0);
 		var id="c"+i;
 		document.getElementById(id).src=arr[x];
+		if(i==1||i==2)
+			addvalue(arr[x]);
 		console.log(x);
 	}
 	do
@@ -75,6 +79,11 @@ function setcards()
 		}
 	}
 }
+function addvalue(a)
+{
+	playersum=playersum+Number(cardvalue[a]);
+	console.log("SUM"+playersum);
+}
 var gl=1;
 function hit()
 {
@@ -85,6 +94,7 @@ function hit()
 	var id="s"+gl;
 	document.getElementById(id).style.display="inline-block";
 	document.getElementById(id).src=arr[x];
+	addvalue(arr[x]);
 	arr[x]=0;
 	console.log(x);
 	gl=gl+1;
