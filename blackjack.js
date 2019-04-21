@@ -33,8 +33,11 @@ var bet=0;
 var coinvalue={
 	'10.png':'10','100.png':'100','11.png':'1'
 }
+var hide="";
+document.getElementById("dealBtn").disabled=true;
 function setcards()
 {
+	document.getElementById("dealBtn").style.display="none";
 	for(i=1;i<4;i++)
 	{
 		do
@@ -47,7 +50,7 @@ function setcards()
 	}
 	do
 	{
-		var hide=Math.floor((Math.random() * 52) + 1);
+		hide=Math.floor((Math.random() * 52) + 1);
 	}while(arr[hide]==0);
 	document.getElementById("dealBtn").disabled=true;
 	document.getElementById("hitBtn").style.display="block";
@@ -72,25 +75,29 @@ function setcards()
 		}
 	}
 }
-// function hit()
-// {
-// 	i=4;
-// 	do
-// 	{
-// 		var x=Math.floor((Math.random() * 52) + 1);
-// 	}while(arr[x]==0);
-// 	var id="c"+i;
-// 	document.getElementById(id).style.display="block";
-// 	document.getElementById(id).src=arr[x];
-// 	arr[x]=0;
-// 	console.log(x);
-// }
+var gl=1;
+function hit()
+{
+	do
+	{
+		var x=Math.floor((Math.random() * 52) + 1);
+	}while(arr[x]==0);
+	var id="s"+gl;
+	document.getElementById(id).style.display="inline-block";
+	document.getElementById(id).src=arr[x];
+	arr[x]=0;
+	console.log(x);
+	gl=gl+1;
+}
 function stand()
 {
 	document.getElementById("hitBtn").disabled=true;
+	document.getElementById("c4").src=arr[hide];
 }
 function changecoin(s)
 {
+	document.getElementById("dealBtn").style.display="block";
+	document.getElementById("dealBtn").disabled=false;
 	document.getElementById("dealc").style.display="block";
 	document.getElementById("dealc").src=s.src;
 	var c=s.getAttribute('src');
@@ -118,4 +125,5 @@ function doubling()
 	document.getElementById("hitBtn").disabled=true;
 	document.getElementById("doubleBtn").disabled=true;
 	document.getElementById("standBtn").disabled=true;
+	document.getElementById("c5").src=arr[hide];
 }
