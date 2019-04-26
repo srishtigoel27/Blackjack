@@ -38,6 +38,8 @@ var playersum=0;
 var hide="";
 var playflag=0;
 var dealflag=0;
+var send;
+var split=0;
 function restart()
 {
 	arr={
@@ -84,16 +86,15 @@ function restart()
 	document.getElementById("dealc").style.display="none";
 	document.getElementById("p").style.display="none";
 	document.getElementById("ps").innerHTML="";
+	document.getElementById("sum1").innerHTML="";
+	document.getElementById("sum2").innerHTML="";
 	document.getElementById("d").style.display="none";
 	document.getElementById("ds").innerHTML="";
 
-	for(i=1;i<4;i++)
+	for(i=1;i<5;i++)
 	{
 		document.getElementById("s"+i).style.display="none";
 		document.getElementById("d"+i).style.display="none";
-	}
-	for(i=1;i<5;i++)
-	{
 		document.getElementById("c"+i).src="red_back.png";
 	}
 	document.getElementById("b").innerHTML="";
@@ -104,20 +105,25 @@ function restart()
 	document.getElementById("hitBtn").disabled=false;
 	document.getElementById("doubleBtn").disabled=false;
 	document.getElementById("standBtn").disabled=false;
+	document.getElementById("dealBtn").style.display="none";
+	document.getElementById("splitBtn").style.display="none";
+	document.getElementById("hitBtn").style.display="none";
+	document.getElementById("doubleBtn").style.display="none";
+	document.getElementById("standBtn").style.display="none";
 	document.getElementById("replayBtn").style.display="none";
 	if(money>=100)
-		document.getElementById("100c").style.visibility="visible"
+		document.getElementById("c100").style.visibility="visible"
 	if(money>=10)
-		document.getElementById("10c").style.visibility="visible";
-	document.getElementById("1c").style.visibility="visible"
+		document.getElementById("c10").style.visibility="visible";
+	document.getElementById("c11").style.visibility="visible"
 }
 document.getElementById("dealBtn").disabled=true;
 document.getElementById("total").innerHTML=money;
 function setcards()
 {
-	document.getElementById("1c").style.visibility="hidden"
-	document.getElementById("10c").style.visibility="hidden"
-	document.getElementById("100c").style.visibility="hidden";
+	document.getElementById("c11").style.visibility="hidden"
+	document.getElementById("c10").style.visibility="hidden"
+	document.getElementById("c100").style.visibility="hidden";
 	document.getElementById("dealBtn").style.display="none";
 	for(i=1;i<4;i++)
 	{
@@ -131,14 +137,25 @@ function setcards()
 		{
 			if(cardvalue[arr[x]]==11)
 				playflag=1;
-			addvalue(arr[x]);
+				send=arr[x];
+				arr[x]=0;
+			addvalue(send);
 		}
 		else {
 			if(cardvalue[arr[x]]==11)
 				dealflag=1;
-			adddeal(arr[x]);
+				send=arr[x];
+				arr[x]=0;
+			adddeal(send);
 		}
 	}
+	if(playersum<21)
+	{
+		buttondisplay();
+	}
+}
+function buttondisplay()
+{
 	document.getElementById("dealBtn").disabled=true;
 	document.getElementById("hitBtn").style.display="block";
 	document.getElementById("standBtn").style.display="block";
@@ -148,18 +165,21 @@ function setcards()
 	var b=document.getElementById("c2");
 	if(cardvalue[a.getAttribute('src')]==cardvalue[b.getAttribute('src')])
 	{
-		if(cardvalue[a.getAttribute('src')]==10)
-		{
-			var str1=a.getAttribute('src');
-			var str2=b.getAttribute('src');
-			if(str1[0]==str2[0])
-			{
-				document.getElementById("splitBtn").style.display="block";
-			}
-		}
-		else {
+		// if(cardvalue[a.getAttribute('src')]==10)
+		// {
+		// 	var str1=a.getAttribute('src');
+		// 	var str2=b.getAttribute('src');
+		// 	if(str1[0]==str2[0])
+		// 	{
+		// 		split=1;
+		// 		document.getElementById("splitBtn").style.display="block";
+		// 	}
+		// }
+		// else
+		//  {
+			 split=1;
 			document.getElementById("splitBtn").style.display="block";
-		}
+		// }
 	}
 }
 function addvalue(a)
@@ -175,7 +195,6 @@ function addvalue(a)
 	}
 	if(playersum>=21)
 	{
-		document.getElementById("hitBtn").style.display="none";
 		stand();
 	}
 	document.getElementById("p").style.display="block";
@@ -205,8 +224,9 @@ function hit()
 	document.getElementById(id).src=arr[x];
 	if(cardvalue[arr[x]]==11)
 		playflag=1;
-	addvalue(arr[x]);
+	send=arr[x];
 	arr[x]=0;
+	addvalue(send);
 	gl=gl+1;
 }
 var z=1;
@@ -225,8 +245,9 @@ function dealergame()
 			dealflag=1;
 		document.getElementById(id).style.display="inline-block";
 		document.getElementById(id).src=arr[x];
-		adddeal(arr[x]);
+		send=arr[x];
 		arr[x]=0;
+		adddeal(send);
 		z=z+1;
 	}
 }
@@ -235,20 +256,30 @@ function dealergame()
 }
 function stand()
 {
+	console.log(split);
+	if(split==1)
+	{
+		sum1=playersum;
+		console.log(sum1);
+		secondcard();
+		split=0;
+	}
+	else {
+	sum2=playersum;
+	console.log(sum2);
 	do
 	{
 		hide=Math.floor((Math.random() * 52) + 1);
 	}while(arr[hide]==0);
 	if(cardvalue[arr[hide]]==11)
 		dealflag=1;
-	adddeal(arr[hide]);
-	document.getElementById("hitBtn").disabled=true;
-	document.getElementById("doubleBtn").disabled=true;
-	document.getElementById("standBtn").disabled=true;
+	send=arr[hide];
+	adddeal(send);
 	document.getElementById("c4").src=arr[hide];
-	arr[hide]=0;
+	arr[hide]=0
 	dealergame();
 	result();
+	}
 }
 function changecoin(s)
 {
@@ -262,15 +293,15 @@ function changecoin(s)
 	document.getElementById("total").innerHTML=money;
 	if(money<100)
 	{
-		document.getElementById("100c").style.visibility="hidden";
+		document.getElementById("c100").style.visibility="hidden";
 	}
 	if(money<10)
 	{
-		document.getElementById("10c").style.visibility="hidden";
+		document.getElementById("c10").style.visibility="hidden";
 	}
 	if(money<1)
 	{
-		document.getElementById("1c").style.visibility="hidden";
+		document.getElementById("c11").style.visibility="hidden";
 	}
 	document.getElementById("b").innerHTML=bet;
 }
@@ -280,15 +311,15 @@ function doubling()
 	bet=bet+bet;
 	if(money<100)
 	{
-		document.getElementById("100c").style.visibility="hidden";
+		document.getElementById("c100").style.visibility="hidden";
 	}
 	if(money<10)
 	{
-		document.getElementById("10c").style.visibility="hidden";
+		document.getElementById("c10").style.visibility="hidden";
 	}
 	if(money<1)
 	{
-		document.getElementById("1c").style.visibility="hidden";
+		document.getElementById("c11").style.visibility="hidden";
 	}
 	document.getElementById("b").innerHTML=bet;
 	document.getElementById("total").innerHTML=money;
@@ -340,4 +371,45 @@ function result()
 	else {
 		document.getElementById("r").innerHTML="Game Over";
 	}
+}
+var cardsplit;
+var bet1;
+var bet2;
+var sum1;
+var sum2;
+function splitcard()
+{
+	bet1=bet/2;
+	bet2=bet/2;
+	cardsplit=document.getElementById("c2").getAttribute('src');
+	do
+	{
+		var x=Math.floor((Math.random() * 52) + 1);
+	}while(arr[x]==0);
+	document.getElementById("c2").src=arr[x];
+	sum1=playersum/2;
+	sum2=playersum/2;
+	playersum=sum1+Number(cardvalue[arr[x]]);
+	arr[x]=0
+	bet=bet1;
+	buttondisplay();
+	console.log(playersum);
+}
+function secondcard()
+{
+	console.log("hello");
+	for(i=1;i<5;i++)
+	{
+		document.getElementById("s"+i).style.display="none";
+	}
+	document.getElementById("c1").src=cardsplit;
+	do
+	{
+		var x=Math.floor((Math.random() * 52) + 1);
+	}while(arr[x]==0);
+	document.getElementById("c2").src=arr[x];
+	bet=bet2;
+	playersum=sum2+Number(cardvalue[arr[x]]);
+	arr[x]=0;
+	buttondisplay();
 }
