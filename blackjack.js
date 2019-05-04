@@ -40,6 +40,7 @@ var playflag=0;
 var dealflag=0;
 var send;
 var split=0;
+var splitflag=0;
 function restart()
 {
 	arr={
@@ -72,6 +73,8 @@ function restart()
 		'QC.png':'10','QD.png':'10','QH.png':'10','QS.png':'10',
 		'JC.png':'10','JD.png':'10','JH.png':'10','JS.png':'10'
 	}
+	splitflag=0;
+	split=0;
 	bet=0;
 	coinvalue={
 		'10.png':'10','100.png':'100','11.png':'1'
@@ -88,9 +91,11 @@ function restart()
 	document.getElementById("ps").innerHTML="";
 	document.getElementById("sum1").innerHTML="";
 	document.getElementById("sum2").innerHTML="";
+	document.getElementById("res2").innerHTML="";
 	document.getElementById("d").style.display="none";
 	document.getElementById("ds").innerHTML="";
-
+  document.getElementById("res").style.display="none";
+	document.getElementById("res2").style.display="none";
 	for(i=1;i<5;i++)
 	{
 		document.getElementById("s"+i).style.display="none";
@@ -143,7 +148,9 @@ function setcards()
 		}
 		else {
 			if(cardvalue[arr[x]]==11)
+			{
 				dealflag=1;
+			}
 				send=arr[x];
 				arr[x]=0;
 			adddeal(send);
@@ -171,13 +178,11 @@ function buttondisplay()
 		// 	var str2=b.getAttribute('src');
 		// 	if(str1[0]==str2[0])
 		// 	{
-		// 		split=1;
 		// 		document.getElementById("splitBtn").style.display="block";
 		// 	}
 		// }
 		// else
 		//  {
-			 split=1;
 			document.getElementById("splitBtn").style.display="block";
 		// }
 	}
@@ -207,8 +212,8 @@ function adddeal(a)
 	{
 		if(dealsum>21)
 		{
-			dealflag=0;
 			dealsum=dealsum-10;
+			dealflag=0;
 		}
 	}
 }
@@ -242,7 +247,9 @@ function dealergame()
 		}while(arr[x]==0);
 		var id="d"+z;
 		if(cardvalue[arr[x]]==11)
+		{
 			dealflag=1;
+		}
 		document.getElementById(id).style.display="inline-block";
 		document.getElementById(id).src=arr[x];
 		send=arr[x];
@@ -256,17 +263,14 @@ function dealergame()
 }
 function stand()
 {
-	console.log(split);
 	if(split==1)
 	{
 		sum1=playersum;
-		console.log(sum1);
 		secondcard();
 		split=0;
 	}
 	else {
 	sum2=playersum;
-	console.log(sum2);
 	do
 	{
 		hide=Math.floor((Math.random() * 52) + 1);
@@ -278,7 +282,10 @@ function stand()
 	document.getElementById("c4").src=arr[hide];
 	arr[hide]=0
 	dealergame();
-	result();
+	if(splitflag==1)
+		splitresult();
+	else
+		result();
 	}
 }
 function changecoin(s)
@@ -326,8 +333,21 @@ function doubling()
 	hit();
 	stand();
 }
+function splitresult()
+{
+		document.getElementById("sum1").innerHTML="Sum1="+sum1;
+		playersum=sum1;
+		result();
+		var z=document.getElementById("res").innerHTML;
+		document.getElementById("res2").style.display="block";
+		document.getElementById("res2").innerHTML=z;
+		document.getElementById("sum2").innerHTML="Sum2="+sum2;
+		playersum=sum2;
+		result();
+}
 function result()
 {
+	document.getElementById("res").style.display="block";
 	if(playersum==dealsum)
 	{
 		document.getElementById("res").innerHTML="PUSH";
@@ -379,6 +399,8 @@ var sum1;
 var sum2;
 function splitcard()
 {
+	split=1;
+	splitflag=1;
 	bet1=bet/2;
 	bet2=bet/2;
 	cardsplit=document.getElementById("c2").getAttribute('src');
@@ -390,14 +412,13 @@ function splitcard()
 	sum1=playersum/2;
 	sum2=playersum/2;
 	playersum=sum1+Number(cardvalue[arr[x]]);
+	document.getElementById("ps").innerHTML=playersum;
 	arr[x]=0
 	bet=bet1;
 	buttondisplay();
-	console.log(playersum);
 }
 function secondcard()
 {
-	console.log("hello");
 	for(i=1;i<5;i++)
 	{
 		document.getElementById("s"+i).style.display="none";
@@ -410,6 +431,7 @@ function secondcard()
 	document.getElementById("c2").src=arr[x];
 	bet=bet2;
 	playersum=sum2+Number(cardvalue[arr[x]]);
+	document.getElementById("ps").innerHTML=playersum;
 	arr[x]=0;
 	buttondisplay();
 }
