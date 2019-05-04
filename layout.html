@@ -1,58 +1,65 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Blackjack game by dpsri</title>
+		<title>Blackjack game</title>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	</head>
 	<body>
     <h2>BLACKJACK</h2>
-		<div id="container">
-			<div id="images">
 				<div id="playercards">
-        	<h3>PLAYER CARDS</h3>
-          <img alt="card" src="red_back.png" id="c1" style="width:140px;height:150px;">
-          <img alt="card" src="red_back.png" id="c2"style="width:140px;height:150px;">
-					<img alt="card" src="2C.png"  id="c4" hidden style="width:140px;height:150px;">
-          <img alt="card" src="3C.png" hidden style="width:140px;height:150px;">
-					<img alt="card" src="2C.png" hidden style="width:140px;height:150px;">
+        	<h4>PLAYER CARDS</h4>
+          <img alt="card" src="red_back.png" id="c1" style="width:140px;height:180px;">
+          <img alt="card" src="red_back.png" id="c2"style="width:140px;height:180px;">
+					<img alt="card" src="2C.png"  id="s1" hidden style="width:140px;height:180px;">
+          <img alt="card" src="3C.png" id="s2" hidden style="width:140px;height:180px;">
+					<img alt="card" src="2C.png" id="s3"hidden style="width:140px;height:180px;">
+					<img alt="card" src="2C.png" id="s4"hidden style="width:140px;height:180px;">
+				<h3 id="p"hidden>Player Score</h3>
+				<h3 id="ps"></h3>
 				</div>
 				<div id="dealercards">
-          <H3>DEALER CARDS</H3>
-					<img alt="card" src="red_back.png" value="a" style="width:140px;height:150px;">
-        	<img alt="card" src="red_back.png" id="c3"style="width:140px;height:150px;">
-					<img alt="card" src="2C.png" hidden style="width:140px;height:150px;">
-          <img alt="card" src="3C.png" hidden style="width:140px;height:150px;">
-					<img alt="card" src="2C.png" hidden style="width:140px;height:150px;">
+          <H4>DEALER CARDS</H4>
+					<img alt="card" src="red_back.png" id="c4"style="width:140px;height:180px;">
+        	<img alt="card" src="red_back.png" id="c3"style="width:140px;height:180px;">
+					<img alt="card" src="2C.png"id="d1" hidden style="width:140px;height:180px;">
+          <img alt="card" src="3C.png"id="d2" hidden style="width:140px;height:180px;">
+					<img alt="card" src="2C.png" id="d3"hidden style="width:140px;height:180px;">
+					<img alt="card" src="2C.png" id="d4"hidden style="width:140px;height:180px;">
+				<h3 id="d"hidden>Dealer Score</h3>
+				<h3 id="ds"></h3>
 				</div>
-      </div>
-			<div id="coin">
-				<img alt="card" src="10.png"hidden id="dealc" style="width:140px;height:100px;">
-			</div>
 			</br>
-			<img alt="card" src="10.png" onclick="changecoin(this.src)" style="width:140px;height:100px;">
-			<img alt="card" src="11.png" onclick="changecoin(this.src)" style="width:140px;height:100px;">
-			<img alt="card" src="100.png" onclick="changecoin(this.src)" style="width:140px;height:100px;">
+		</br>
+			<div id="coin">
+				<img alt="card" src="10.png" hidden id="dealc" style="width:140px;height:100px;">
+			</div>
+			<h3 id="am">Amount</h3>
+			<h3 id="total"></h3>
+			<img alt="card" src="10.png" onclick="changecoin(this)" id="c10" style="width:140px;height:100px;">
+			<img alt="card" src="11.png" onclick="changecoin(this)" id="c11" style="width:140px;height:100px;">
+			<img alt="card" src="100.png" onclick="changecoin(this)" id="c100" style="width:140px;height:100px;">
       <div id="buttons">
 				<div id = "dealer">
-					<button id="dealBtn" onclick="setcards()">Deal</button>
-					<!-- <button id="resetBtn">Reset</button> -->
+					<button id="replayBtn" hidden onclick="restart()">Replay</button>
+					<button id="dealBtn"onclick="setcards()" hidden>Deal</button>
+					<h3 id="b"></h3>
+				</br>
         </div>
         <div id = "hit">
-          <button id="hitBtn" hidden>Hit</button>
+          <button id="hitBtn" hidden onclick="hit()">Hit</button>
+				</br>
           <button id="standBtn" onclick="stand()"hidden>Stand</button>
-					<button id="doubleBtn" hidden>Double</button>
-					<button id="splitBtn" hidden>split</button>
-        </div>
-      </div>
-      <!-- <div id="result">
-        Your score :<input type="text" id="playersum" value="">
-        Dealer score :<input type="text" id="dealersum" value="">
-      </div> -->
-      <!-- <div id="results">
-	      <div id="show">Result : <input type="text" id="resultbox">
+				</br>
+					<button id="doubleBtn" hidden onclick="doubling()">Double</button>
+				</br>
+					<button id="splitBtn" hidden onclick="splitcard()">split</button>
 				</div>
-      </div> -->
-		</div>
+				  <h3 id="res2" hidden></h3>
+					<h3 id="res" hidden></h3>
+					<h3 id="r"></h3>
+					<h3 id="sum1"></h3>
+					<h3 id="sum2"></h3>
+      </div>
 <script src="blackjack.js"></script>
 </body>
 </html>
