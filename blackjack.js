@@ -41,6 +41,7 @@ var dealflag=0;
 var send;
 var split=0;
 var splitflag=0;
+var dealer_sec=0;
 function restart()
 {
 	arr={
@@ -152,6 +153,7 @@ function setcards()
 				dealflag=1;
 			}
 				send=arr[x];
+				dealer_sec=Number(cardvalue[send]);
 				arr[x]=0;
 			adddeal(send);
 		}
@@ -170,7 +172,7 @@ function buttondisplay()
 		document.getElementById("doubleBtn").style.display="block";
 	var a=document.getElementById("c1");
 	var b=document.getElementById("c2");
-	if(cardvalue[a.getAttribute('src')]==cardvalue[b.getAttribute('src')])
+	if(cardvalue[a.getAttribute('src')]==cardvalue[b.getAttribute('src')]&&split==0)
 	{
 		// if(cardvalue[a.getAttribute('src')]==10)
 		// {
@@ -190,9 +192,9 @@ function buttondisplay()
 function addvalue(a)
 {
 	playersum=playersum+Number(cardvalue[a]);
-	if(playflag==1)
+	if(playersum>21)
 	{
-		if(playersum>21)
+		if(playflag==1)
 		{
 			playflag=0;
 			playersum=playersum-10;
@@ -208,9 +210,9 @@ function addvalue(a)
 function adddeal(a)
 {
 	dealsum=dealsum+Number(cardvalue[a]);
-	if(dealflag==1)
+	if(dealsum>21)
 	{
-		if(dealsum>21)
+		if(dealflag==1)
 		{
 			dealsum=dealsum-10;
 			dealflag=0;
@@ -256,6 +258,7 @@ function dealergame()
 		arr[x]=0;
 		adddeal(send);
 		z=z+1;
+		console.log(dealflag);
 	}
 }
 	document.getElementById("d").style.display="block";
@@ -279,6 +282,8 @@ function stand()
 		dealflag=1;
 	send=arr[hide];
 	adddeal(send);
+	if(dealsum==cardvalue[send])
+		dealsum=dealsum+dealer_sec;
 	document.getElementById("c4").src=arr[hide];
 	arr[hide]=0
 	dealergame();
@@ -389,7 +394,7 @@ function result()
 	if(money!=0)
 	document.getElementById("replayBtn").style.display="block";
 	else {
-		document.getElementById("r").innerHTML="Game Over";
+		document.getElementById("r").innerHTML="Game Over!! You are out of money!";
 	}
 }
 var cardsplit;
@@ -399,6 +404,7 @@ var sum1;
 var sum2;
 function splitcard()
 {
+	document.getElementById("splitBtn").style.display="none";
 	split=1;
 	splitflag=1;
 	bet1=bet/2;
