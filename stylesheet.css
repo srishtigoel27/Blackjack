@@ -1,5 +1,9 @@
 body {
-  background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+  margin-top: 20px;
+	margin-left: 450px;
+	width: 800px;
+	height: 780px;
+  background: radial-gradient( rgb(1, 66, 1) 70%, black);
 }
 h2
 {
@@ -9,7 +13,7 @@ h2
   text-decoration: underline;
   font-size: 40px;
   font: bold 50px/50px Georgia, serif;
-  text-shadow: 2px 2px 5px green;
+  text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;
 }
 #playercards
 {
@@ -181,24 +185,28 @@ h3
   top: 300px;
   left: 270px;
   font-family: Arial, Helvetica, sans-serif;
+  text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;
 }
 #am{
   position:absolute;
   top: 99px;
   left: 240px;
   font-family: Arial, Helvetica, sans-serif;
+  text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;
 }
 #total{
   position:absolute;
   top: 98px;
   left: 340px;
   font-family: Arial, Helvetica, sans-serif;
+  text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;
 }
 #dealc{
   position:absolute;
   top: 200px;
   left: 220px;
   font-family: Arial, Helvetica, sans-serif;
+  text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;
 }
 #res
 {
@@ -232,9 +240,8 @@ h3
 }
 #r{
   position: absolute;
-  right: 200px;
-  top: 500px
-  font-size:15px;
+  bottom: 40px;
+  left: 870px;
 }
 #c1{
   position: absolute;
@@ -289,8 +296,18 @@ z-index: auto;
   left:210px;
   z-index:4;
 }
-#s4{
+#d4{
   position: absolute;
   left:260px;
   z-index:5;
+}
+#sum2{
+  position: absolute;
+  bottom: 40px;
+  left: 520px;
+}
+#sum1{
+  position: absolute;
+  bottom: 100px;
+  left: 520px;
 }
