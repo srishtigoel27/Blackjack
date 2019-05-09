@@ -10,7 +10,6 @@ h2
 	color: black;
 	text-align: center;
 	margin: 0 auto;
-  text-decoration: underline;
   font-size: 40px;
   font: bold 50px/50px Georgia, serif;
   text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;
@@ -19,30 +18,30 @@ h2
 {
   position: absolute;
   top: 70px;
-  left: 520px;
+  left: 600px;
 	padding: 0.8%;
   font-size:25px;
   font-family: Arial, Helvetica, sans-serif;
-  color: black;
-    text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;
+  color: white;
+/*    text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;*/
 }
 #dealercards
 {
   position: absolute;
   top: 350px;
-  left: 520px;
+  left: 600px;
   padding: 0.8%;
 	font-size:25px;
   height: 280px;
   font-family: Arial, Helvetica, sans-serif;
-  color: black;
-  text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;
+  color: white;
+  /*text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;*/
 }
 #ps
 {
   position: absolute;
-  top: 24px;
-  left: 380px;
+  top: 27px;
+  left: 310px;
   padding: 0.8%;
 	font-size:20px;
   height: 280px;
@@ -51,7 +50,7 @@ h2
 #p
 {
   position: absolute;
-  top: 24px;
+  top: 27px;
   left: 240px;
   padding: 0.8%;
 	font-size:20px;
@@ -65,7 +64,7 @@ h2
 {
   position: absolute;
   top: 27px;
-  left: 380px;
+  left: 310px;
   padding: 0.8%;
 	font-size:20px;
   height: 280px;
@@ -75,7 +74,7 @@ h2
 {
   position: absolute;
   top: 27px;
-  left: 230px;
+  left: 240px;
   padding: 0.8%;
 	font-size:20px;
   height: 280px;
@@ -98,26 +97,26 @@ h3
 {
   position: absolute;
   bottom: 40px;
-  left: 870px;
+  left: 650px;
 }
 #hitBtn{
   position:absolute;
-  right: 600px;
+  right: 550px;
   top: 300px;
 }
 #doubleBtn{
   position:absolute;
-  right: 570px;
+  right: 520px;
   top: 500px;
 }
 #splitBtn{
   position:absolute;
-  right: 600px;
+  right: 550px;
   top: 600px;
 }
 #standBtn{
   position:absolute;
-  right: 580px;
+  right: 530px;
   top: 400px;
 }
 #hitBtn,#doubleBtn,#splitBtn,#standBtn
@@ -185,21 +184,21 @@ h3
   top: 300px;
   left: 270px;
   font-family: Arial, Helvetica, sans-serif;
-  text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;
+color:white;
 }
 #am{
   position:absolute;
   top: 99px;
   left: 240px;
   font-family: Arial, Helvetica, sans-serif;
-  text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;
+ color:white;
 }
 #total{
   position:absolute;
   top: 98px;
   left: 340px;
   font-family: Arial, Helvetica, sans-serif;
-  text-shadow: -1px 0 white, 0 2px white, 1px 0 white, 0 -1px white;
+color:white;
 }
 #dealc{
   position:absolute;
@@ -210,38 +209,40 @@ h3
 }
 #res
 {
-  position: absolute;
-  bottom: 40px;
-  left: 620px;
-  background-color: #4CAF50; /* Green */
+  position:absolute;
+  right: 300px;
+  top: 270px;
+  /* background-color: #4CAF50; /* Green */ */
   border: none;
   color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 28px;
   margin: 4px 2px;
   font-family: Arial, Helvetica, sans-serif;
 }
 #res2
 {
-  position: absolute;
-  bottom:100px;
-  left: 620px;
-  background-color: #4CAF50; /* Green */
+  position:absolute;
+  right: 300px;
+  top: 220px;
+  /* background-color: #4CAF50; /* Green */ */
   border: none;
   color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 28px;
   margin: 4px 2px;
   font-family: Arial, Helvetica, sans-serif;
 }
 #r{
   position: absolute;
   bottom: 40px;
-  left: 870px;
+  left: 600px;
+  color: white;
+  font-size: 28px;
 }
 #c1{
   position: absolute;
@@ -301,13 +302,17 @@ z-index: auto;
   left:260px;
   z-index:5;
 }
-#sum2{
-  position: absolute;
-  bottom: 40px;
-  left: 520px;
-}
 #sum1{
-  position: absolute;
-  bottom: 100px;
-  left: 520px;
+  position:absolute;
+  right: 550px;
+  top: 210px;
+  color: white;
+  font-size: 28px;
+}
+#sum2{
+  position:absolute;
+  right: 550px;
+  top: 260px;
+  color: white;
+  font-size: 28px;
 }
