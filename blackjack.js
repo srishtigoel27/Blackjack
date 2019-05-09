@@ -174,19 +174,19 @@ function buttondisplay()
 	var b=document.getElementById("c2");
 	if(cardvalue[a.getAttribute('src')]==cardvalue[b.getAttribute('src')]&&split==0)
 	{
-		// if(cardvalue[a.getAttribute('src')]==10)
-		// {
-		// 	var str1=a.getAttribute('src');
-		// 	var str2=b.getAttribute('src');
-		// 	if(str1[0]==str2[0])
-		// 	{
-		// 		document.getElementById("splitBtn").style.display="block";
-		// 	}
-		// }
-		// else
-		//  {
+		if(cardvalue[a.getAttribute('src')]==10)
+		{
+			var str1=a.getAttribute('src');
+			var str2=b.getAttribute('src');
+			if(str1[0]==str2[0])
+			{
+				document.getElementById("splitBtn").style.display="block";
+			}
+		}
+		else
+		 {
 			document.getElementById("splitBtn").style.display="block";
-		// }
+		}
 	}
 }
 function addvalue(a)
@@ -425,6 +425,7 @@ function splitcard()
 }
 function secondcard()
 {
+	g1=1;
 	for(i=1;i<5;i++)
 	{
 		document.getElementById("s"+i).style.display="none";
